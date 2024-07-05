@@ -95,6 +95,9 @@
             visibility: visible;
             opacity: 1;
         }
+        #notificationSound{
+            display: none;
+        }
     </style>
 </head>
 
@@ -227,7 +230,7 @@
             toast.className = "toast show";
             setTimeout(function () {
                 toast.className = toast.className.replace("show", "");
-            }, 300000);
+            }, 2000);
         }
         function playSound() {
             var audio = document.getElementById("notificationSound");
